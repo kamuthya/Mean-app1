@@ -1,0 +1,37 @@
+  <h1>
+   Angular Heroes
+  </h1>
+  <div class="header-bar"></div>
+ <app-nodes (nodes) = "parentmethod($event)"></app-nodes> 
+
+ <div>
+    <ul class="heroes">
+      <li *ngFor="let node of diagramNodeData" >
+        <div class="hero-element">
+          <div class="badge">{{node.key}}</div>
+          <li *ngFor="let obj of node.items">{{obj | json}}</li>
+  
+        </div>
+      </li>
+    </ul>
+</div>
+
+<div>
+    <ul class="heroes">
+      <li *ngFor="let node of diagramLinkData" >
+        <div class="hero-element">
+          <div class="badge">{{node.from}}</div>
+          <div class="badge">{{node.to}}</div>
+  
+        </div>
+      </li>
+    </ul>
+</div>
+
+ <div class="left">
+    Diagram
+    <gojs-diagram #myDiagram [initDiagram]='initDiagram' [nodeDataArray]='diagramNodeData' [linkDataArray]='diagramLinkData'
+      [divClassName]='diagramDivClassName' [modelData]='diagramModelData' [skipsDiagramUpdate]='skipsDiagramUpdate'
+      (modelChange)='diagramModelChange($event)'>
+    </gojs-diagram>
+  </div>
